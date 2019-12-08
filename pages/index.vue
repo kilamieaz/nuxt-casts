@@ -1,72 +1,29 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        screencasts
-      </h1>
-      <h2 class="subtitle">
-        A site to view screencasts
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+	<div class="home">
+		<div class="display-4 ma-4 d-flex justify-center">Videos</div>
+		<div class="d-flex flex-wrap">
+			<div v-for="video in videos" :key="video.id">
+				<ListVideo :video="video"></ListVideo>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
+import ListVideo from "../components/ListVideo";
 export default {
-  components: {
-    Logo
-  }
-}
+	components: {
+		ListVideo
+	},
+	async asyncData({ $axios }) {
+		let response = await $axios.get("/videos");
+		let videos = response.data.data;
+		return {
+			videos
+		};
+	}
+};
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>

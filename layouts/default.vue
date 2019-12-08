@@ -1,40 +1,18 @@
 <template>
-	<div>
-		<div id="navbar">
-			<div id="navbar-links">
-				<nuxt-link to="/">Home</nuxt-link>
-				<nuxt-link to="/videos">Videos</nuxt-link>
-			</div>
-		</div>
-		<div id="default-body">
+	<v-app>
+		<v-app-bar app color="green" dark>
+			<v-toolbar-title class="headline text-uppercase">
+				<v-btn text to="/">Screencast</v-btn>
+				<v-btn text to="/videos">Admin</v-btn>
+			</v-toolbar-title>
+		</v-app-bar>
+		<v-content>
 			<nuxt />
-		</div>
-	</div>
+		</v-content>
+	</v-app>
 </template>
 
 <style>
-#default-body {
-	max-width: 800px;
-	margin: auto;
-}
-
-#navbar {
-	height: 40px;
-	width: 100%;
-	background-color: #333;
-}
-
-#navbar #navbar-links {
-	max-width: 800px;
-	margin: auto;
-}
-
-#navbar a {
-	color: white;
-	text-decoration: none;
-	margin-right: 10px;
-}
-
 html {
 	font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
 		Roboto, "Helvetica Neue", Arial, sans-serif;
