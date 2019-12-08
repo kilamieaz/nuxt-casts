@@ -1,7 +1,6 @@
 <template>
 	<div v-if="video">
-		<v-card width="340px" hover class="ma-2">
-			<!-- :to="{ name: 'video-watch' , params: {id: video.id} }" -->
+		<v-card width="340px" hover class="ma-2" :to="`/watch/${video.id}`">
 			<v-img :src="video.thumbnail" alt />
 			<v-card-title>{{ video.name }}</v-card-title>
 			<v-card-text>
