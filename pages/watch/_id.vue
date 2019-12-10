@@ -2,11 +2,7 @@
 	<v-container>
 		<v-row>
 			<v-col md="9" cols="12">
-				<video-player
-					class="video-player-box"
-					ref="videoPlayer"
-					v-video-player:myVideoPlayer="playerOptions"
-				/>
+				<div class="video-player-box" ref="videoPlayer" v-video-player:myVideoPlayer="playerOptions"></div>
 				<!-- @ended="markVideoPlayed" -->
 			</v-col>
 			<v-col md="3" cols="12">
@@ -39,24 +35,19 @@ if (process.browser) {
 	const VueVideoPlayer = require("vue-video-player/dist/ssr");
 	Vue.use(VueVideoPlayer);
 }
-// import { mapState, mapGetters } from "vuex";
+import { mapState } from "vuex";
 export default {
-	async asyncData({ $axios, params }) {
-		let response = await $axios.get(`/videos/${params.id}`);
-		let video = response.data.data;
-		return {
-			video
-		};
-	},
 	computed: {
 		// ...mapGetters({ videoIsPlayed: "users/videoIsPlayed" }),
 		// ...mapState({
 		// 	videos: state => state.videos.videos,
 		// 	currentUser: state => state.users.currentUser
 		// }),
-		// video() {
-		// 	return this.videos.find(vid => vid.id == this.$route.params.id);
-		// },
+
+		...mapState(["videos"]),
+		video() {
+			return this.videos.find(vid => vid.id == this.$route.params.id);
+		},
 
 		playerOptions() {
 			return {
