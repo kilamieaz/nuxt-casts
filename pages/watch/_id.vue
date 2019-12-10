@@ -1,5 +1,5 @@
 <template>
-	<v-container v-if="video">
+	<v-container>
 		<v-row>
 			<v-col md="9" cols="12">
 				<video-player
@@ -24,11 +24,7 @@
 				</div>-->
 				<div v-html="video.description"></div>
 				<span v-for="tag in video.tags" :key="tag.id">
-					<v-btn
-						color="green lighten-2"
-						class="ma-1"
-						:to="{ name: 'tag', params: { id: tag.id }}"
-					>{{ tag.name }}</v-btn>
+					<v-btn color="green lighten-2" class="ma-1" :to="`/tags/${tag.id}`">{{ tag.name }}</v-btn>
 				</span>
 			</v-col>
 		</v-row>

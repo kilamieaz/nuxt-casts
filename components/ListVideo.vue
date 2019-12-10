@@ -1,5 +1,5 @@
 <template>
-	<div v-if="video">
+	<div>
 		<v-card width="340px" hover class="ma-2" :to="`/watch/${video.id}`">
 			<v-img :src="video.thumbnail" alt />
 			<v-card-title>{{ video.name }}</v-card-title>
@@ -15,8 +15,13 @@
 			</v-card-text>
 			<v-card-actions v-if="video.tags">
 				<span v-for="tag in video.tags" :key="tag.id">
-					<v-btn color="green lighten-2" class="mr-2" small @mousedown.stop>{{ tag.name }}</v-btn>
-					<!-- :to="{ name: 'tag', params: { id: tag.id }}" -->
+					<v-btn
+						color="green lighten-2"
+						class="mr-2"
+						small
+						@mousedown.stop
+						:to="`/tags/${tag.id}`"
+					>{{ tag.name }}</v-btn>
 				</span>
 			</v-card-actions>
 		</v-card>
