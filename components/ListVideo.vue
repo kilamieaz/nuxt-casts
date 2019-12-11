@@ -43,4 +43,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+a {
+	text-decoration: none;
+	color: black;
+}
 </style>

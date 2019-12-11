@@ -3,25 +3,42 @@
 		<v-app-bar app color="green" dark>
 			<v-toolbar-title class="headline text-uppercase">
 				<v-btn text to="/">Screencast</v-btn>
-				<v-btn text to="/videos">Admin</v-btn>
+				<v-btn text to="/admin/videos">Admin</v-btn>
 			</v-toolbar-title>
 		</v-app-bar>
 		<v-content>
 			<nuxt />
 		</v-content>
+		<v-snackbar
+			v-for="(snackbar, index) in snackbars.filter(s => s.showing)"
+			:key="snackbar.text + Math.random()"
+			v-model="snackbar.showing"
+			:timeout="snackbar.timeout"
+			:color="snackbar.color"
+			:style="`bottom: ${(index * 60) + 8}px`"
+		>
+			{{snackbar.text}}
+			<v-btn text @click="snackbar.showing = false">Close</v-btn>
+		</v-snackbar>
 	</v-app>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-	middleware: "load-videos-and-tags"
+	middleware: "load-videos-and-tags",
+	computed: {
+		...mapState({
+			snackbars: state => state.snackbars.snackbars
+		})
+	}
 };
 </script>
 
 <style>
 html {
-	font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-		Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 	font-size: 16px;
 	word-spacing: 1px;
 	-ms-text-size-adjust: 100%;

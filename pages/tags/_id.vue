@@ -17,7 +17,11 @@ export default {
 		ListVideo
 	},
 	computed: {
-		...mapState(["tags", "videos"]),
+		...mapState({
+			videos: state => state.videos.videos,
+			tags: state => state.tags.tags
+		}),
+
 		videosOnTag() {
 			return this.videos.filter(v => {
 				return this.tag.video_ids.includes(v.id);

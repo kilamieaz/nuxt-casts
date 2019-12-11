@@ -7,8 +7,8 @@ export default async function ({
   let isInitialPageLoad = !from;
   if (isInitialPageLoad) {
     await RSVP.all([
-      store.dispatch('loadAllVideos'),
-      store.dispatch('loadAllTags')
+      store.dispatch('videos/loadAll'),
+      store.dispatch('tags/loadAll')
     ])
   }
 }

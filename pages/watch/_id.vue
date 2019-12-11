@@ -44,7 +44,8 @@ export default {
 		// 	currentUser: state => state.users.currentUser
 		// }),
 
-		...mapState(["videos"]),
+		...mapState({ videos: state => state.videos.videos }),
+
 		video() {
 			return this.videos.find(vid => vid.id == this.$route.params.id);
 		},

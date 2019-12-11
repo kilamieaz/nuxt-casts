@@ -14,13 +14,13 @@
 
 <script>
 import { mapState } from "vuex";
-import ListVideo from "../components/ListVideo";
+import ListVideo from "@/components/ListVideo";
 export default {
 	components: {
 		ListVideo
 	},
 	computed: {
-		...mapState(["videos"])
+		...mapState({ videos: state => state.videos.videos })
 	}
 };
 </script>
