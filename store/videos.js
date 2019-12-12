@@ -68,7 +68,7 @@ export const actions = {
 }
 
 export const getters = {
-  getVideo: state => id => {
+  get: state => id => {
     return state.videos.find(video => video.id == id);
   },
 }

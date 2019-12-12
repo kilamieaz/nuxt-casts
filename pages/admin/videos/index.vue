@@ -43,9 +43,9 @@ export default {
 			);
 			if (response) {
 				this.$store.dispatch("videos/delete", video);
-				// this.$store.dispatch("snackbars/setSnackbar", {
-				// 	text: `You have successfully deleted your video, ${video.name}`
-				// });
+				this.$store.dispatch("snackbars/setSnackbar", {
+					text: `You have successfully deleted your video, ${video.name}`
+				});
 			}
 		}
 	}

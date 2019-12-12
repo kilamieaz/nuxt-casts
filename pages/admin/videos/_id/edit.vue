@@ -24,7 +24,7 @@ export default {
 			this.$store.dispatch("snackbars/setSnackbar", {
 				text: `You have successfully edited your video, ${video.name}`
 			});
-			this.$router.push({ name: "admin-video-list" });
+			this.$router.push(`/admin/videos`);
 		}
 	}
 };

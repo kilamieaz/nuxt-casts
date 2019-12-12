@@ -1,4 +1,4 @@
-# screencasts
+# nuxt-casts
 
 > A site to view screencasts
 
