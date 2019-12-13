@@ -70,5 +70,23 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) { }
-  }
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/login', method: 'post', propertyName: 'access_token' },
+          logout: { url: '/logout', method: 'post' },
+          user: { url: '/user', method: 'get', propertyName: false }
+        },
+        // tokenRequired: true,
+        // tokenType: 'bearer'
+      },
+      // 'laravel.passport': {
+      //   url: '/login',
+      //   // client_id: '...',
+      //   // client_secret: '...'
+      // },
+    }
+  },
 }

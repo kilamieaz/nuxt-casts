@@ -1,10 +1,18 @@
 <template>
 	<v-app>
 		<v-app-bar app color="green" dark>
-			<v-toolbar-title class="headline text-uppercase">
-				<v-btn text to="/">Screencast</v-btn>
-				<v-btn text to="/admin/videos">Admin</v-btn>
-			</v-toolbar-title>
+			<v-btn text to="/">Screencast</v-btn>
+			<v-btn text to="/admin/videos">Admin</v-btn>
+
+			<v-spacer />
+			<div v-if="this.$auth.loggedIn">
+				{{ this.$auth.user.email }}
+				<v-btn text @click="logout()">Logout</v-btn>
+			</div>
+			<div v-else>
+				<v-btn text to="/login">Login</v-btn>
+				<v-btn text to="/register">Register</v-btn>
+			</div>
 		</v-app-bar>
 		<v-content>
 			<nuxt />
@@ -31,6 +39,11 @@ export default {
 		...mapState({
 			snackbars: state => state.snackbars.snackbars
 		})
+	},
+	methods: {
+		async logout() {
+			await this.$auth.logout();
+		}
 	}
 };
 </script>
