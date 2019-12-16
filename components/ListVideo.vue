@@ -2,7 +2,7 @@
 	<div>
 		<v-card width="340px" hover class="ma-2">
 			<nuxt-link :to="`/watch/${video.id}`">
-				<v-img :src="video.thumbnail" alt />
+				<v-img :src="video.thumbnail || ''" alt />
 				<v-card-title>{{ video.name }}</v-card-title>
 				<!-- <v-card-text>
 				<div class="green--text" v-if="videoIsPlayed(video.id)">
