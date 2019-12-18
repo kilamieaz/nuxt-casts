@@ -1,6 +1,7 @@
 <template>
 	<div v-if="video">
 		<div class="display-1 pt-3">{{ video.name }}</div>
+		<VideoByLine :video="video"></VideoByLine>
 		<div v-html="video.description"></div>
 		<v-combobox
 			:items="tags"
@@ -9,17 +10,22 @@
 			multiple
 			chips
 			deletable-chips
-			hide-selected
 			return-object
 		></v-combobox>
+		<v-btn :to="`/admin/videos/${video.id}/edit`">Edit</v-btn>
+		<v-btn :to="`/watch/${video.id}`">Watch</v-btn>
 	</div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import _ from "lodash";
+import VideoByLine from "@/components/VideoByLine";
 
 export default {
+	components: {
+		VideoByLine
+	},
 	computed: {
 		...mapState({
 			videos: state => state.videos.videos,
