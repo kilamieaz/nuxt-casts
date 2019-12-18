@@ -7,6 +7,8 @@
 			</v-col>
 			<v-col md="3" cols="12">
 				<div class="display-1">{{ video.name }}</div>
+				<VideoByLine :video="video"></VideoByLine>
+
 				<!-- <div class="green--text" v-if="videoIsPlayed(video.id)">
 					<v-row>
 						<v-col cols="1">
@@ -36,7 +38,12 @@ if (process.browser) {
 	Vue.use(VueVideoPlayer);
 }
 import { mapState } from "vuex";
+import VideoByLine from "@/components/VideoByLine";
+
 export default {
+	components: {
+		VideoByLine
+	},
 	computed: {
 		// ...mapGetters({ videoIsPlayed: "users/videoIsPlayed" }),
 		// ...mapState({
