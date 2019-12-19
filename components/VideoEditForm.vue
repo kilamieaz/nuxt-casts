@@ -1,5 +1,6 @@
 <template>
 	<v-form v-model="valid">
+		<v-datetime-picker label="Select Datetime" v-model="video.published_at"></v-datetime-picker>
 		<v-text-field
 			v-model="video.name"
 			label="Name"

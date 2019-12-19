@@ -6,17 +6,17 @@ export default {
   head: {
     title: 'Screencasts',
     meta: [{
-      charset: 'utf-8'
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1'
-    },
-    {
-      hid: 'description',
-      name: 'description',
-      content: process.env.npm_package_description || ''
-    }
+        charset: 'utf-8'
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
+      }
     ],
     link: [{
       rel: 'icon',
@@ -37,7 +37,9 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    '~/plugins/vuetify-datetime-picker'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -69,15 +71,27 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) { }
+    extend(config, ctx) {},
+    transpile: ['vuetify-datetime-picker']
   },
   auth: {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/login', method: 'post', propertyName: 'access_token' },
-          logout: { url: '/logout', method: 'post' },
-          user: { url: '/user', method: 'get', propertyName: false }
+          login: {
+            url: '/login',
+            method: 'post',
+            propertyName: 'access_token'
+          },
+          logout: {
+            url: '/logout',
+            method: 'post'
+          },
+          user: {
+            url: '/user',
+            method: 'get',
+            propertyName: false
+          }
         },
         // tokenRequired: true,
         // tokenType: 'bearer'
