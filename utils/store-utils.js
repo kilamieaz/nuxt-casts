@@ -14,5 +14,9 @@ export const deserializeTags = function (tags) {
 export const deserializeVideos = function (videos) {
   videos.forEach(v => {
     v.tag_ids = v.tags.map(t => t.id);
+    if (v.published_at) {
+      v.published_at = new Date(v.published_at);
+    }
+    v.created_at = new Date(v.created_at);
   });
 }
