@@ -1,8 +1,11 @@
 <template>
-	<div v-if="video">
+	<div>
 		<div class="display-1 pt-3">{{ video.name }}</div>
 		<VideoByLine :video="video"></VideoByLine>
-		<div v-html="video.description"></div>
+		<MarkdownDisplay :markdown="video.description" />
+		<h3 v-if="video.code_summary">Code Summary</h3>
+		<MarkdownDisplay :markdown="video.code_summary" />
+
 		<v-combobox
 			:items="tags"
 			item-text="name"
@@ -21,10 +24,12 @@
 import { mapState } from "vuex";
 import _ from "lodash";
 import VideoByLine from "@/components/VideoByLine";
+import MarkdownDisplay from "@/components/MarkdownDisplay";
 
 export default {
 	components: {
-		VideoByLine
+		VideoByLine,
+		MarkdownDisplay
 	},
 	computed: {
 		...mapState({
