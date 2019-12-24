@@ -8,7 +8,7 @@
 				<div class="display-1">{{ video.name }}</div>
 				<VideoByLine :video="video"></VideoByLine>
 
-				<!-- <div class="green--text" v-if="videoIsPlayed(video.id)">
+				<div class="green--text" v-if="videoIsPlayed(video.id)">
 					<v-row>
 						<v-col cols="1">
 							<v-icon class="green--text" small>fas fa-check</v-icon>
@@ -17,34 +17,39 @@
 					</v-row>
 				</div>
 				<div v-else>
-					<v-btn x-small @click="markVideoPlayed" v-if="currentUser.name">Mark Played</v-btn>
-				</div>-->
-				<div v-html="video.description"></div>
+					<v-btn x-small @click="markPlayed" v-if="this.$auth.loggedIn">Mark Played</v-btn>
+				</div>
+
+				<MarkdownDisplay :markdown="video.description"></MarkdownDisplay>
 				<span v-for="tag in video.tags" :key="tag.id">
 					<v-btn color="green lighten-2" class="ma-1" :to="`/tags/${tag.id}`">{{ tag.name }}</v-btn>
 				</span>
+			</v-col>
+		</v-row>
+		<v-row>
+			<v-col cols="12">
+				<h1>Code Summary</h1>
+				<MarkdownDisplay :markdown="video.code_summary"></MarkdownDisplay>
 			</v-col>
 		</v-row>
 	</v-container>
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
+
 import VideoWatch from "@/components/VideoWatch";
-import { mapState } from "vuex";
 import VideoByLine from "@/components/VideoByLine";
+import MarkdownDisplay from "@/components/MarkdownDisplay";
 
 export default {
 	components: {
 		VideoByLine,
-		VideoWatch
+		VideoWatch,
+		MarkdownDisplay
 	},
 	computed: {
-		// ...mapGetters({ videoIsPlayed: "users/videoIsPlayed" }),
-		// ...mapState({
-		// 	videos: state => state.videos.videos,
-		// 	currentUser: state => state.users.currentUser
-		// }),
-
+		...mapGetters({ videoIsPlayed: "user/videoIsPlayed" }),
 		...mapState({ videos: state => state.videos.videos }),
 
 		video() {
@@ -52,9 +57,9 @@ export default {
 		}
 	},
 	methods: {
-		// markVideoPlayed() {
-		//     this.$store.dispatch("users/markVideoPlayed", this.video.id);
-		// }
+		markVideoPlayed() {
+		    this.$store.dispatch("user/markVideoPlayed", this.video.id);
+		}
 	}
 };
 </script>

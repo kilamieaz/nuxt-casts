@@ -7,14 +7,14 @@
 				<v-card-text>
 					<VideoByLine :video="video"></VideoByLine>
 
-					<!-- <div class="green--text" v-if="videoIsPlayed(video.id)">
-					<v-row>
-						<v-col cols="1">
-							<v-icon class="green--text" small>fas fa-check</v-icon>
-						</v-col>
-						<v-col cols="11">Played</v-col>
-					</v-row>
-					</div>-->
+					<div class="green--text" v-if="videoIsPlayed(video.id)">
+						<v-row>
+							<v-col cols="1">
+								<v-icon class="green--text" small>fas fa-check</v-icon>
+							</v-col>
+							<v-col cols="11">Played</v-col>
+						</v-row>
+					</div>
 				</v-card-text>
 			</nuxt-link>
 
@@ -35,16 +35,16 @@
 
 
 <script>
-// import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import VideoByLine from "@/components/VideoByLine";
 
 export default {
 	components: {
 		VideoByLine
 	},
-	// computed: {
-	// 	...mapGetters({ videoIsPlayed: "users/videoIsPlayed" })
-	// },
+	computed: {
+		...mapGetters({ videoIsPlayed: "user/videoIsPlayed" })
+	},
 	props: ["video", "tags"]
 };
 </script>
