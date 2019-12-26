@@ -19,7 +19,7 @@ export const actions = {
         videoId,
         user: rootState.auth.user
       });
-      this.$axios.post(`/users/${currentUser.id}/playedVideos`, {
+      this.$axios.post(`/users/${rootState.auth.user.id}/playedVideos`, {
         video_id: videoId
       });
     }

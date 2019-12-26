@@ -11,7 +11,7 @@
 				<div class="green--text" v-if="videoIsPlayed(video.id)">
 					<v-row>
 						<v-col cols="1">
-							<v-icon class="green--text" small>fas fa-check</v-icon>
+							<font-awesome-icon icon="check" />
 						</v-col>
 						<v-col cols="11">Played</v-col>
 					</v-row>
@@ -58,7 +58,7 @@ export default {
 	},
 	methods: {
 		markVideoPlayed() {
-		    this.$store.dispatch("user/markVideoPlayed", this.video.id);
+			this.$store.dispatch("user/markVideoPlayed", this.video.id);
 		}
 	}
 };
