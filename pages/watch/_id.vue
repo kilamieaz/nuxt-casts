@@ -49,8 +49,8 @@ export default {
 		MarkdownDisplay
 	},
 	computed: {
-		...mapGetters({ videoIsPlayed: "user/videoIsPlayed" }),
 		...mapState({ videos: state => state.videos.videos }),
+		...mapGetters({ videoIsPlayed: "user/videoIsPlayed" }),
 
 		video() {
 			return this.videos.find(vid => vid.id == this.$route.params.id);
