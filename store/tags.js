@@ -61,7 +61,7 @@ export const actions = {
   }) {
     let {
       data: tags
-    } = await getData('/tags', this.$axios);
+    } = await getData('/tags?include=videos', this.$axios);
     deserializeTags(tags)
     commit('SET_TAGS', tags);
   },
