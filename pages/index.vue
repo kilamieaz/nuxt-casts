@@ -1,6 +1,15 @@
 <template>
 	<div class="home">
-		<div class="display-4 ma-4 d-flex justify-center">Videos</div>
+		<div class="display-4 ma-4 d-flex justify-center">All Videos</div>
+
+		<v-data-table :items="videos" :headers="headers">
+			<template #item-published_at="{value}">
+				<DateDisplay :publishedAt="value"></DateDisplay>
+			</template>
+			<template #item-duration="{value}">
+				<DurationDisplay :duration="value"></DurationDisplay>
+			</template>
+		</v-data-table>
 		<div class="d-flex flex-wrap">
 			<div v-for="video in videos" :key="video.id">
 				<ListVideo :video="video" :tags="video.tags"></ListVideo>
@@ -15,11 +24,22 @@
 <script>
 import { mapState } from "vuex";
 import ListVideo from "@/components/ListVideo";
+import DurationDisplay from "@/components/DurationDisplay";
+import DateDisplay from "@/components/DateDisplay";
 export default {
 	components: {
-		ListVideo
+		ListVideo,
+		DurationDisplay,
+		DateDisplay
 	},
 	computed: {
+		headers() {
+			return [
+				{ text: "Name", value: "name" },
+				{ text: "Date", value: "published_at" },
+				{ text: "Duration", value: "duration" }
+			];
+		},
 		...mapState({ videos: state => state.videos.videos })
 	}
 };
