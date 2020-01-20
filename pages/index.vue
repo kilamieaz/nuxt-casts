@@ -2,44 +2,19 @@
 	<div class="home">
 		<div class="display-4 ma-4 d-flex justify-center">All Videos</div>
 
-		<v-data-table :items="videos" :headers="headers">
-			<template #item-published_at="{value}">
-				<DateDisplay :publishedAt="value"></DateDisplay>
-			</template>
-			<template #item-duration="{value}">
-				<DurationDisplay :duration="value"></DurationDisplay>
-			</template>
-		</v-data-table>
-		<div class="d-flex flex-wrap">
-			<div v-for="video in videos" :key="video.id">
-				<ListVideo :video="video" :tags="video.tags"></ListVideo>
-			</div>
-			<!-- <client-only v-for="video in videos" :key="video.id">
-				<ListVideo :video="video"></ListVideo>
-			</client-only>-->
-		</div>
+		<VideoTable :videos="videos"></VideoTable>
 	</div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import ListVideo from "@/components/ListVideo";
-import DurationDisplay from "@/components/DurationDisplay";
-import DateDisplay from "@/components/DateDisplay";
+import VideoTable from "@/components/VideoTable";
+
 export default {
 	components: {
-		ListVideo,
-		DurationDisplay,
-		DateDisplay
+		VideoTable
 	},
 	computed: {
-		headers() {
-			return [
-				{ text: "Name", value: "name" },
-				{ text: "Date", value: "published_at" },
-				{ text: "Duration", value: "duration" }
-			];
-		},
 		...mapState({ videos: state => state.videos.videos })
 	}
 };
