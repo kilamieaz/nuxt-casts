@@ -4,7 +4,7 @@
 		<span v-if="publishedAt">
 			&nbsp; | &nbsp;
 			Published on
-			<DateDisplay :publishedAt="publishedAt"></DateDisplay>
+			<DateDisplay :date="publishedAt"></DateDisplay>
 		</span>
 		<span v-else>This video is not yet published</span>
 	</em>

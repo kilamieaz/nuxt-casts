@@ -1,10 +1,10 @@
 <template>
-	<span>{{ publishedAt.getMonth() + 1}}/{{ publishedAt.getDate()}}/{{ publishedAt.getYear() }}</span>
+	<span v-if="date">{{ date.getMonth() + 1}}/{{ date.getDate()}}/{{ date.getYear() }}</span>
 </template>
 
 <script>
 export default {
-	props: ["publishedAt"]
+	props: ["date"]
 };
 </script>
 
