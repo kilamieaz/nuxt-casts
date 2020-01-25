@@ -4,6 +4,7 @@
 		:headers="headers"
 		sort-by="sortable_published_at"
 		:sort-desc="true"
+		show-expand
 	>
 		<template #item.sortable_published_at="{item}">
 			<DateDisplay :date="item.published_at" />
@@ -28,6 +29,19 @@
 				<v-btn color="green lighten-2" class="mr-1" x-small :to="`/tags/${tag.id}`">{{ tag.name }}</v-btn>
 			</span>
 		</template>
+		<template #expanded-item="{headers, item}">
+			<td :colspan="headers.length">
+				<v-row>
+					<v-col cols="12" md="4">
+						<VideoWatch :video="item"></VideoWatch>
+					</v-col>
+					<v-col cols="12" md="8">
+						<h1>{{ item.name }}</h1>
+						<MarkdownDisplay :markdown="item.description"></MarkdownDisplay>
+					</v-col>
+				</v-row>
+			</td>
+		</template>
 	</v-data-table>
 </template>
 
@@ -35,10 +49,14 @@
 import { mapGetters } from "vuex";
 import DurationDisplay from "@/components/DurationDisplay";
 import DateDisplay from "@/components/DateDisplay";
+import VideoWatch from "@/components/VideoWatch";
+import MarkdownDisplay from "@/components/MarkdownDisplay";
 export default {
 	components: {
 		DurationDisplay,
-		DateDisplay
+		DateDisplay,
+		VideoWatch,
+		MarkdownDisplay
 	},
 	computed: {
 		...mapGetters({
