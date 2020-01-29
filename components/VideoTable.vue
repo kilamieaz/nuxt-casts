@@ -4,6 +4,7 @@
 		:headers="headers"
 		sort-by="sortable_published_at"
 		:sort-desc="true"
+		@click:row="goToVideo"
 		show-expand
 	>
 		<template #item.sortable_published_at="{item}">
@@ -25,9 +26,11 @@
 			</div>
 		</template>
 		<template #item.tags="{item}">
-			<span v-for="tag in item.tags" :key="tag.id">
-				<v-btn color="green lighten-2" class="mr-1" x-small :to="`/tags/${tag.id}`">{{ tag.name }}</v-btn>
-			</span>
+			<td @click.stop class="non-clickable">
+				<span v-for="tag in item.tags" :key="tag.id">
+					<v-btn color="green lighten-2" class="mr-1" x-small :to="`/tags/${tag.id}`">{{ tag.name }}</v-btn>
+				</span>
+			</td>
 		</template>
 		<template #expanded-item="{headers, item}">
 			<td :colspan="headers.length">
@@ -81,9 +84,21 @@ export default {
 			});
 		}
 	},
+	methods: {
+		goToVideo(item) {
+			this.$router.push(`/watch/${item.id}`);
+		}
+	},
 	props: ["videos"]
 };
 </script>
 
 <style lang="scss" scoped>
+::v-deep tbody tr {
+	cursor: pointer;
+}
+
+::v-deep tbody tr td.non-clickable {
+	cursor: auto;
+}
 </style>
