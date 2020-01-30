@@ -8,7 +8,15 @@ export const getData = async function (url, axios) {
 export const deserializeTags = function (tags) {
   tags.forEach(t => {
     t.video_ids = t.videos.map(v => v.id)
-  })
+
+    t.videos.forEach(v => {
+      if (v.published_at) {
+        v.published_at = new Date(v.published_at);
+      }
+      v.created_at = new Date(v.created_at);
+      v.updated_at = new Date(v.created_at);
+    });
+  });
 }
 
 export const deserializeVideos = function (videos) {
@@ -18,5 +26,6 @@ export const deserializeVideos = function (videos) {
       v.published_at = new Date(v.published_at);
     }
     v.created_at = new Date(v.created_at);
+    v.updated_at = new Date(v.created_at);
   });
 }

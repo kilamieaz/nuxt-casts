@@ -1,13 +1,13 @@
 <template>
 	<v-data-table
-		:items="mungedVideos"
+		:items="videos"
 		:headers="headers"
-		sort-by="sortable_published_at"
+		sort-by="published_at"
 		:sort-desc="true"
 		@click:row="goToVideo"
 		show-expand
 	>
-		<template #item.sortable_published_at="{item}">
+		<template #item.published_at="{item}">
 			<DateDisplay :date="item.published_at" />
 		</template>
 		<template #item.duration="{value}">
@@ -68,20 +68,11 @@ export default {
 		headers() {
 			return [
 				{ text: "Name", value: "name" },
-				{ text: "Date", value: "sortable_published_at" },
+				{ text: "Date", value: "published_at" },
 				{ text: "Duration", value: "duration" },
 				{ text: "Played", value: "played", sortable: false },
 				{ text: "Tags", value: "tags", sortable: false }
 			];
-		},
-		mungedVideos() {
-			return this.videos.map(v => {
-				return {
-					...v,
-					sortable_published_at:
-						v.published_at && v.published_at.toISOString()
-				};
-			});
 		}
 	},
 	methods: {
