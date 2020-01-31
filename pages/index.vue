@@ -2,7 +2,7 @@
 	<div class="home">
 		<div class="display-4 ma-4 d-flex justify-center">All Videos</div>
 
-		<VideoTable :videos="videos"></VideoTable>
+		<VideoTable :videos="videos" :headers="headers"></VideoTable>
 	</div>
 </template>
 
@@ -15,7 +15,21 @@ export default {
 		VideoTable
 	},
 	computed: {
-		...mapState({ videos: state => state.videos.videos })
+		...mapState({ videos: state => state.videos.videos }),
+		headers() {
+			return [
+				{
+					text: "Played",
+					value: "played",
+					sortable: false,
+					width: "20px"
+				},
+				{ text: "Name", value: "name" },
+				{ text: "Date", value: "published_at" },
+				{ text: "Duration", value: "duration" },
+				{ text: "Tags", value: "tags", sortable: false }
+			];
+		}
 	}
 };
 </script>

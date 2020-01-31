@@ -10,6 +10,8 @@
 			:search="search"
 			:custom-filter="filter"
 			show-expand
+			:dense="dense"
+			:items-per-page="itemsPerPage || 10"
 		>
 			<template #item.published_at="{item}">
 				<DateDisplay :date="item.published_at" />
@@ -34,6 +36,14 @@
 					<span v-for="tag in item.tags" :key="tag.id">
 						<v-btn color="green lighten-2" class="mr-1" x-small :to="`/tags/${tag.id}`">{{ tag.name }}</v-btn>
 					</span>
+				</td>
+			</template>
+			<template #item.actions="{item}">
+				<td @click.stop class="non-clickable">
+					<v-btn x-small :to="`/watch/${item.id}`">Watch</v-btn>
+					<v-btn x-small :to="`/admin/videos/${item.id}`">Show</v-btn>
+					<v-btn x-small :to="`/admin/videos/${item.id}/edit`">Edit</v-btn>
+					<v-btn x-small @click="deleteVideo(item)">Delete</v-btn>
 				</td>
 			</template>
 			<template #expanded-item="{headers, item}">
@@ -72,20 +82,15 @@ export default {
 	computed: {
 		...mapGetters({
 			videoIsPlayed: "user/videoIsPlayed"
-		}),
-		headers() {
-			return [
-				{ text: "Name", value: "name" },
-				{ text: "Date", value: "published_at" },
-				{ text: "Duration", value: "duration" },
-				{ text: "Played", value: "played", sortable: false },
-				{ text: "Tags", value: "tags", sortable: false }
-			];
-		}
+		})
 	},
 	methods: {
 		goToVideo(item) {
-			this.$router.push(`/watch/${item.id}`);
+			if (this.customClickAction) {
+				this.customClickAction(item);
+			} else {
+				this.$router.push(`/watch/${item.id}`);
+			}
 		},
 		filter(value, search, item) {
 			let inName = RegExp(search, "i").test(item.name);
@@ -97,9 +102,20 @@ export default {
 				}
 			});
 			return inName || inTags;
+		},
+		deleteVideo(video) {
+			let response = confirm(
+				`Are you sure you want to delete ${video.name}`
+			);
+			if (response) {
+				this.$store.dispatch("videos/delete", video);
+				this.$store.dispatch("snackbars/setSnackbar", {
+					text: `You have successfully deleted your video, ${video.name}`
+				});
+			}
 		}
 	},
-	props: ["videos"]
+	props: ["videos", "headers", "customClickAction", 'dense', 'itemsPerPage']
 };
 </script>
 
