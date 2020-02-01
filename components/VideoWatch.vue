@@ -29,7 +29,12 @@ export default {
 			};
 		}
 	},
-	props: ["video"]
+	props: {
+		video: {
+			type: Object,
+			required: true
+		}
+	}
 };
 </script>
 

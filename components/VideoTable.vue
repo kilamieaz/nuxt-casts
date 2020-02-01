@@ -115,7 +115,25 @@ export default {
 			}
 		}
 	},
-	props: ["videos", "headers", "customClickAction", 'dense', 'itemsPerPage']
+	props: {
+		videos: {
+			type: Array,
+			required: true
+		},
+		headers: {
+			type: Array,
+			required: true
+		},
+		customClickAction: {
+			type: Function,
+			required: false
+		},
+		dense: {
+			type: Boolean,
+			required: true
+		},
+		itemsPerPage: Number
+	}
 };
 </script>
 

@@ -7,8 +7,8 @@
 			:videos="videos"
 			:headers="headers"
 			:customClickAction="goToVideoShow"
-			dense="true"
-			itemsPerPage="20"
+			:dense="true"
+			:itemsPerPage="20"
 		></VideoTable>
 	</v-container>
 </template>

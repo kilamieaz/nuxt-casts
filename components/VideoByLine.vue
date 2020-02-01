@@ -24,7 +24,12 @@ export default {
 			return this.video.published_at;
 		}
 	},
-	props: ["video"]
+	props: {
+		video: {
+			type: Object,
+			required: true
+		}
+	}
 };
 </script>
 

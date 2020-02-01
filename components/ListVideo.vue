@@ -45,7 +45,16 @@ export default {
 	computed: {
 		...mapGetters({ videoIsPlayed: "user/videoIsPlayed" })
 	},
-	props: ["video", "tags"]
+	props: {
+		video: {
+			type: Object,
+			required: true
+		},
+		tags: {
+			type: Object,
+			required: true
+		}
+	}
 };
 </script>
 

@@ -4,7 +4,7 @@
 
 <script>
 export default {
-	props: ["date"]
+	props: { date: Date }
 };
 </script>
 
