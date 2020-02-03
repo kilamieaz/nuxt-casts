@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<v-container>
 		<div class="display-1 pt-3">{{ video.name }}</div>
 		<VideoByLine :video="video"></VideoByLine>
 		<v-row>
@@ -24,7 +24,7 @@
 		></v-combobox>
 		<v-btn :to="`/admin/videos/${video.id}/edit`">Edit</v-btn>
 		<v-btn :to="`/watch/${video.id}`">Watch</v-btn>
-	</div>
+	</v-container>
 </template>
 
 <script>

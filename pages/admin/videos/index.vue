@@ -1,16 +1,19 @@
 <template>
-	<v-container>
-		<h1>Video List</h1>
-		<v-btn text to="/admin/videos/create">Add Video</v-btn>
-
-		<VideoTable
-			:videos="videos"
-			:headers="headers"
-			:customClickAction="goToVideoShow"
-			:dense="true"
-			:itemsPerPage="20"
-		></VideoTable>
-	</v-container>
+	<div>
+		<v-container>
+			<v-row>
+				<h1>Video List</h1>
+				<v-btn text to="/admin/videos/create">Add Video</v-btn>
+			</v-row>
+			<VideoTable
+				:videos="videos"
+				:headers="headers"
+				:customClickAction="goToVideoShow"
+				:dense="true"
+				:itemsPerPage="20"
+			></VideoTable>
+		</v-container>
+	</div>
 </template>
 
 <script>

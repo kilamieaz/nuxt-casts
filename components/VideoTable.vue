@@ -129,8 +129,7 @@ export default {
 			required: false
 		},
 		dense: {
-			type: Boolean,
-			required: true
+			type: Boolean
 		},
 		itemsPerPage: Number
 	}
