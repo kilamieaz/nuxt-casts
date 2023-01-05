@@ -19,7 +19,7 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "highlight.js": "^9.17.1",
     "marked": "^0.8.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "nuxt-fontawesome": "^0.4.0",
     "rsvp": "^4.8.5",
     "vue-video-player": "^5.0.2",
